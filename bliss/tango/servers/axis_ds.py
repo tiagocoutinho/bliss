@@ -536,6 +536,12 @@ class BlissAxis(PyTango.Device_4Impl):
         self.attr_Sign_read = self.axis.sign()
         attr.set_value(self.attr_Sign_read)
 
+    def write_Offset(self, attr):
+        self.debug_stream("In write_Offset()")
+        data = attr.get_write_value()
+        new_pos = self.axis.dial2user(self.axis.dial(), data)
+        self.axis.position(new_pos)
+
     def read_Offset(self, attr):
         self.debug_stream("In read_Offset()")
         self.attr_Offset_read = self.axis.offset()
@@ -1063,7 +1069,7 @@ class BlissAxisClass(PyTango.DeviceClass):
         'Offset':
         [[PyTango.DevDouble,
           PyTango.SCALAR,
-          PyTango.READ],
+          PyTango.READ_WRITE],
          {
              'label': "Offset",
              'unit': "uu",
