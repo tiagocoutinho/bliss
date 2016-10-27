@@ -1,0 +1,262 @@
+DDE_nb	label	group0	group1	group2	process	parameter	type	length	min	max	read	write	poll	secured	highly_secured	default	DDE	cache	scale	description
+1	Identification string	13			0	0	c	-2			Yes	Yes	No	No	No	7SN999999	identstrng	Yes		identnr.+softwareversion[+serialnr.]
+2	Primary node address	1			0	1	c		0	128	Yes	Yes	No	Yes	Yes	0	pna	Yes		primary node address: network parameter FLOW-BUS
+3	Secondary node address	1			0	2	c		0	128	Yes	Yes	No	Yes	Yes	0	sna	Yes		secundary node address: network parameter FLOW-BUS
+4	Next node address	1			0	3	c		0	128	Yes	Yes	No	No	No	1	nna	Yes		next node address: network parameter FLOW-BUS
+5	Last node address	1			0	4	c		0	128	Yes	Yes	No	No	No	32	lna	Yes		last node address: network parameter FLOW-BUS
+6	Arbitrage	1			0	5	c		0	255	Yes	Yes	No	Yes	Yes	67	arbitrage	No		FLOW -BUS arbitrage setting and/or automatic optimization
+7	Initreset	12			0	10	c		0	255	Yes	Yes	No	No	No		initreset	No		init and reset security key commands for network/parameter settings
+8	Measure	2			1	0	i		-23593	41942	Yes	Yes	Yes	No	No	0	measure	No	320.0	measured value (100% = 32000)
+9	Setpoint	2	18		1	1	i		0	32767	Yes	Yes	Yes	No	No	0	setpoint	No		setpoint: wanted value (100% = 32000)
+10	Setpoint slope	18			1	2	i		0	30000	Yes	Yes	No	No	No	0	setpslope	No		setpoint ramp signal 0..100 % in up to slope x 0.1 sec.
+11	Analog input	2	18		1	3	i		-23593	41942	Yes	No	Yes	No	No	0	analoginp	No		analog input signal, normally used for ext. setp. (100% = 32000)
+12	Control mode	18			1	4	c		0	255	Yes	Yes	No	No	No	0	cntrlmode	No		control mode selection for instrument or module
+13	Polynomial constant A	3			1	5	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	0	polycnst A	No		polynomial constant A (offset)
+14	Polynomial constant B	3			1	6	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	1	polycnst B	No		polynomial constant B (span]
+15	Polynomial constant C	3			1	7	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	0	polycnst C	No		polynomial constant C
+16	Polynomial constant D	3			1	8	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	0	polycnst D	No		polynomial constant D
+17	Polynomial constant E	3			1	9	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	0	polycnst E	No		polynomial constant E (offset) for setpoint or power value
+18	Polynomial constant F	3			1	10	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	1	polycnst F	No		polynomial constant F (span) for setpoint or power value
+19	Polynomial constant G	3			1	11	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	0	polycnst G	No		polynomial constant G for setpoint or power v alue
+20	Polynomial constant H	3			1	12	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	0	polycnst H	No		polynomial constant H for setpoint or power value
+21	Capacity	3	19		1	13	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	1	capacity	No		readout value at 100% in capacity (readout) unit
+22	Sensor type	3			1	14	c		0	255	Yes	Yes	No	Yes	No	3	sensortype	No		sensor type information for actual reading and sensor/controller indication
+23	Capacity unit index	3	19		1	15	c		0	255	Yes	Yes	No	Yes	No	0	capunit	No		pointer to capacity (readout) unit (classic unit table]
+24	Fluid number	3			1	16	c		0	8	Yes	Yes	No	No	No	0	fluidnr	No		fluid number: pointer to fluidset (for e.g. polynome, name and cap.)
+25	Fluid name	3			1	17	c	10			Yes	Yes	No	Yes	No	AIR	fluidname	No		name of fluid
+26	Claim node	12			1	18	c		0	128	Yes	Yes	No	Yes	No	0	claimnode	No		node address of module with operation rights
+27	Modify	12			1	19	c		0	255	Yes	Yes	No	No	No	0	modify	No		contains number(s) of changed par (0xXX par nr, 0xFF more than one par changed)
+28	Alarm info	4			1	20	c		0	255	Yes	No	Yes	No	No	0	alarminfo	No		status information of several alarms/errors in the instrument
+29	Channel amount	17			0	12	c		1	120	Yes	Yes	No	No	No	32	chanamount	No		amount of channels which can be operated
+30	First channel	17			0	13	c		1	120	Yes	Yes	No	No	No	1	firstchan	No		first channel that can be operated
+31	Last channel	17			0	14	c		1	120	Yes	Yes	No	No	No	32	lastchan	No		last channel that can be operated
+32	<hostcontrl>	5			9	1	c		0	1	Yes	Yes	No	No	No	0	hostcontrl	No		operation by HOST computer enable flag
+33	Alarm message unit type	5			10	0	c	16			Yes	No	Yes	No	No		alrmmsgTA	No		alarm message string with unit type information
+34	Alarm message number	5			10	1	c	16			Yes	No	Yes	No	No		alrmmsgnr	No		alarm message string with unit number information
+35	Relay status	5			10	2	c	8			Yes	No	No	No	No		relstatus	No		status of relays/potential free contacts ('0' = not activated, '1' = activ ated)
+36	Actual counter value	5				0	f		0	3.40282E+038	Yes	No	Yes	No	No	0	actualval	No		actual value of counter
+37	Signal input selection	5				1	c	8			Yes	Yes	No	No	No		signinpsel	No		signal input selection (' '=no v alue,'+'=pos value,'-'=neg value input)
+38	Reset input selection	5				2	c	8			Yes	Yes	No	No	No		resinpsel	No		external reset input enable/disable ('E'=enable,' '=disable)
+39	<limit>	5				3	f		0	3.40282E+038	Yes	Yes	No	No	No		limit	No		limit/batch for counter in sensor standard units
+40	Delay time	5				4	c	8	0	99235959	Yes	Yes	No	No	No	0	delaytime	No		delay time string in days,hours,minutes,seconds
+41	Duration time	5				5	c	8	0	99235959	Yes	Yes	No	No	No	0	duratntime	No		duration time string in days,hours,minutes,seconds
+42	Valve output setting	5				6	c	8			Yes	Yes	No	No	No	0	vlvoutset	No		valv e output setting ('0'=do nothing, '1'=close valve)
+43	Relay output setting	5				7	c	8			Yes	Yes	No	No	No	LLLLLLLL	reloutset	No		relay output setting ('L'=low, 'H'=high, 'P'=pulse (1 sec.))
+44	Operation mode T/A	5				8	c		0	9	Yes	Yes	No	No	No	0	opermodeTA	No		operation mode of T/A module
+45	Readout unit	5				9	c	7			Yes	No	No	No	No	ln/min	readunit	No		readout unit string
+46	Readout factor	5				10	f		1E-10	10000000000	Yes	No	No	No	No	1	readfact	No		readout factor matching readout unit string
+47	Reset unit	5				12	c		0	1	No	Yes	No	No	No		resetunit	No		reset unit command (1=reset T/A unit)
+48	Valve differentiator down	6				9	f		0	3.40282E+038	Yes	Yes	No	Yes	No	0.1	TdValveDn	No		valv e output differentiation time constant downwards
+49	Valve differentiator up	6				10	f		0	3.40282E+038	Yes	Yes	No	Yes	No	0.1	TdValveUp	No		valv e output differentiation time constant upwards
+50	Sensor differentiator down	6				11	f		0	3.40282E+038	Yes	Yes	No	Yes	No	5.8	TdSensorDn	No		sensor signal differentiation time constant downwards
+51	Sensor differentiator up	6				12	f		0	3.40282E+038	Yes	Yes	No	Yes	No	5.6	TdSensorUp	No		sensor signal differentiation time constant upwards
+52	Cycle time	6			114	12	c		0	255	Yes	Yes	No	Yes	No	6	CycleTime	No		cycle time * 10 msec. main loop signal processing
+53	Analog mode	10			115	3	c		0	255	Yes	Yes	No	Yes	No	0	AnalogMode	No		analog mode selection for analog operation
+54	Reference voltage	10			116	6	i		0	65535	Yes	Yes	No	Yes	No		VrefOutput	No		reference voltage output signal for analog operation
+55	Valve output	8			114	1	l		0	16777215	Yes	Yes	Yes	No	No	0	ValveOut	No		valv e output signal (24-bit number in range 0..14.3Vdc/0..23.3Vdc)
+56	Dynamic display factor	6			117	1	f		0	1	Yes	Yes	No	Yes	No	1	DynDispFct	No		dynamic display factor for display filter (0=max, 1=min goes with par 57)
+57	Static display factor	6			117	2	f		0	1	Yes	Yes	No	Yes	No	0,000001	StaDispFct	No		static display factor for display filter (0=max, 1=min goes with par 56)
+58	Calibration mode	7			115	1	c		0	255	Yes	Yes	No	Yes	No	0	CalMode	No		calibration mode selection (not active until cntrlmode has been set to value 9)
+59	Valve offset	8			116	7	i		-32767	65535	Yes	Yes	No	Yes	No	61000	ValveOffst	No		valv e offset: amount of DAC steps within 1 potmeter step
+60	Monitor mode	2			115	2	c		0	255	Yes	Yes	No	Yes	No	7	Monitor	No		monitor: output signal (measure)  selection for bus and analog output
+61	Alarm register1	4			114	2	c	8			Yes	Yes	No	Yes	No		AlarmReg1	No		alarm register containing warning flags
+62	Alarm register2	4			114	3	c	8			Yes	Yes	No	Yes	No		AlarmReg2	No		alarm register containing critical error flags
+63	<CalRegZS1>	9			116	1	l		0	16777215	Yes	Yes	No	Yes	No	210A7D	CalRegZS1	No		calibration register zero scale input 1 ADC
+64	<CalRegFS1>	9			116	2	l		0	16777215	Yes	Yes	No	Yes	No	52A513	CalRegFS1	No		calibration register full scale input 1 ADC
+65	<CalRegZS2>	9			116	3	l		0	16777215	Yes	Yes	No	Yes	No	210A7D	CalRegZS2	No		calibration register zero scale input 2 ADC
+66	<CalRegFS2>	9			116	4	l		0	16777215	Yes	Yes	No	Yes	No	52A513	CalRegFS2	No		calibration register full scale input 2 ADC
+67	ADC control register	9			114	4	l		0	4294967295	Yes	Yes	No	Yes	No	18904E	ADCcntrReg	No		ADC control register
+68	Bridge potmeter	9			116	5	c		0	255	Yes	Yes	No	Yes	No	0	BridgePotm	No		sensor bridge zero potmeter setting
+69	<AlarmEnble>	4			115	4	c		0	255	Yes	Yes	No	Yes	No	1	AlarmEnble	No		broadcast alarm messsage enable flag
+70	Test mode	4			115	5	c		0	255	Yes	Yes	No	Yes	No	0	TestMode	No		test mode selection  (not active until cntrlmode has been set to v alue 5)
+71	<ADC channel select>	9			115	6	c		1	32	Yes	Yes	No	Yes	No	1	ChanSelect	No		channel selection ADC
+72	Normal step controller response	8			114	5	c		0	255	Yes	Yes	No	Yes	No	0	ContrResp	No		controller response for normal steps (128=normal, <128=slower, >128=faster)
+73	Setpoint exponential smoothing filter	6			117	3	f		0	1	Yes	Yes	No	Yes	No	1	ErrInFilCo	No		analog input filter constant (0=max, 1=min)
+74	Sensor exponential smoothing filter	6			117	4	f		0	1	Yes	Yes	No	Yes	No	1	ExpSmooCon	No		sensor input filter constant (0=max, 1=min)
+75	Analog output zero scale	10			1	21	i		-32767	65535	Yes	Yes	No	Yes	No	32767	AnOutCorZS	No		analog output correction factor zero scale (meas outp DSCM-A 0=0 other 32767=0)
+76	Analog output full scale	10			1	22	i		0	65535	Yes	Yes	No	Yes	No	2000	AnOutCorFS	No		analog output correction factor full scale (meas outp 2000 = 1 * multiplication)
+77	Analog input zero scale	10			1	23	i		-32767	65535	Yes	Yes	No	Yes	No	32767	AnInpCorZS	No		analog input correction factor zero scale (ext setp DSCM-A 0=0 other 32767=0)
+78	Analog input full scale	10			1	24	i		0	65535	Yes	Yes	No	Yes	No	2000	AnInpCorFS	No		analog input correction factor full scale (ext setp 2000 = 1 * multiplication)
+79	Tuning mode	7			115	7	c		0	255	Yes	Yes	No	Yes	No	0	TuningMode	No		(auto)tuning mode selection (not active until cntrlmode has been set to value 6)
+80	Valve default	8			114	6	c		0	255	Yes	Yes	No	Yes	No	0	DefVlvType	No		valv e type (needed for controlling behaviour)
+81	Global modify	12			0	19	c		0	255	Yes	Yes	No	No	No	0	GlobModify	No		contains number(s) of changed processes for indirect polling (0xXX / 0xFF)
+82	Valve span correction factor	8			114	7	f		0	1	Yes	Yes	No	Yes	No	0.1	SpanCorr	No		correction factor valve curv e ratio high/low area
+83	Valve curve correction	8			114	8	c	-2			Yes	Yes	No	Yes	No	20,80	VlvCrvStps	No		Valv e curve correction for controller (max. factor*0.1, flow where factor = 1)
+84	<MemShipNor>	8			114	9	c	-2			Yes	Yes	No	Yes	No	10,5000,10,5000	MemShipNor	No		array with memberships for normal Fuzzy controller
+85	<MemShipOpn>	8			114	10	c	-2			Yes	Yes	No	Yes	No	,10000,3750,2000	MemShipOpn	No		array with memberships for 0-open Fuzzy controller
+86	IO status	12	20		114	11	c		0	255	Yes	Yes	No	Yes	No	4	IOStatus	No		IO status byte for jumper settings and LED signal modes
+87	<FuzzStNeNo>	8			114	13	c	-2			Yes	Yes	No	Yes	No	-30000,-500,-50	FuzzStNeNo	No		array with neg nor output steps for Fuzzy contr.
+88	<FuzzStPoNo>	8			114	14	c	-2			Yes	Yes	No	Yes	No	50,500,25000	FuzzStPoNo	No		array with pos nor output steps for Fuzzy contr.
+89	<FuzzStOpen>	8			114	15	c	-2			Yes	Yes	No	Yes	No	90,180,12000	FuzzStOpen	No		array with open at 0 output steps for Fuzzy contr.
+90	Device type	13			113	1	c	6			Yes	No	No	No	No	DMFC	DeviceType	Yes		(FLOW-BUS) device type information string
+91	BHTModel number	13			113	2	c	-2			Yes	Yes	No	Yes	No	F201C-FA	ModelNum	Yes		model number information string
+92	Serial number	13			113	3	c	-2			Yes	Yes	No	Yes	Yes	SN999999A	SerialNum	Yes		serial number information string (to be changed by Bronkhorst only)
+93	Customer model	11			113	4	c	-2			Yes	Yes	No	Yes	No	STANDARD	MfrConfig	Yes		manufacturing configuration information string
+94	BHT1	14			118	1	c	-2			Yes	Yes	No	Yes	Yes	01,01,95	BHT1	No		special BHT parameter (to be changed by Bronkhorst only)
+95	BHT2	14			118	2	i		0	65535	Yes	No	No	No	No	0	BHT2	No		special BHT parameter
+96	BHT3	14			118	3	l		-3000000000	3000000000	Yes	No	No	No	No	0	BHT3	No		special BHT parameter
+97	BHT4	14			118	4	i		0	65535	Yes	No	No	No	No	0	BHT4	No		special BHT parameter
+98	BHT5	14			118	5	c		0	255	Yes	No	No	No	No	0	BHT5	No		special BHT parameter
+99	BHT6	14			118	6	c		0	255	Yes	Yes	No	No	No	0	BHT6	No		special BHT parameter
+100	BHT7	14			118	7	c		0	255	Yes	No	No	No	No	0	BHT7	No		special BHT parameter
+101	BHT8	14			118	8	c		0	255	Yes	No	No	No	No	0	BHT8	No		special BHT parameter
+102	BHT9	14			118	9	l		-3000000000	3000000000	Yes	No	No	No	No	0	BHT9	No		special BHT parameter
+103	BHT10	14			118	10	c		0	1	No	Yes	No	Yes	Yes	0	BHT10	No		special BHT parameter (to be changed by Bronkhorst only)
+104	Broadcast repeating time	8			114	16	c		0	255	Yes	Yes	No	Yes	No	128	PulseHight	No		broadcast repeating time (x5 ms) (old:height of open at 0 pulse train for valv e)
+105	Firmware version	13	20		113	5	c	6			Yes	No	No	No	No	VX.XX	Version	Yes		revision number of firmware
+106	Pressure sensor type	20			115	9	c		0	255	Yes	Yes	No	Yes	No	0	PressSensr	No		type of pressure sensor
+107	Barometer pressure	20			116	8	f		0	1200	Yes	Yes	No	No	No	1013.25	BaroPress	No		mbar atmospheric (central) barometer pressure
+108	Sensor input zero scale	10			1	25	i		-32767	65535	Yes	Yes	No	Yes	No	32767	AnIn1CorZS	No		analog sensor signal input corr. factor zero scale (DSCM-A 0=0 other 32767=0)
+109	Sensor input full scale	10			1	26	i		0	65535	Yes	Yes	No	Yes	No	2000	AnIn1CorFS	No		analog sensor signal input correction factor full scale (2000=1*multiplication)
+110	Reference voltage input zero scale	10			1	27	i		-32767	65535	Yes	Yes	No	Yes	No	32767	AnIn2CorZS	No		analog Vref input correction factor zero scale (DSCM-A 0=0 other 32767=0)
+111	Reference voltage input full scale	10			1	28	i		0	65535	Yes	Yes	No	Yes	No	2000	AnIn2CorFS	No		analog Vref input correction factor full scale (2000=1*multiplication)
+112	Analog setpoint zero scale	10			1	29	i		-32767	65535	Yes	Yes	No	Yes	No	32767	AnOu1CorZS	No		analog setpoint output correction factor zero scale (DSCM-A 0=0 other 32767=0)
+113	Analog setpoint full scale	10			1	30	i		0	65535	Yes	Yes	No	Yes	No	2000	AnOu1CorFS	No		analog setpoint output correction factor full scale (2000=1*multiplication)
+114	Reset	12			115	8	c		0	255	No	Yes	No	No	No	0	Reset	No		reset facilities (program/alarm/batchcounter)
+115	User tag	11			113	6	c	-2			Yes	Yes	No	No	No	USERTAG	UserTag	Yes		user definable alias string
+116	Alarm limit maximum	15			97	1	i		0	41600	Yes	Yes	No	No	No	0	AlrmMaxLim	No		maximum limit for sensor signal to trigger alarm situation
+117	Alarm limit minimum	15			97	2	i		0	41600	Yes	Yes	No	No	No	0	AlrmMinLim	No		minimum limit for sensor signal to trigger alarm situation
+118	Alarm mode	15			97	3	c		0	255	Yes	Yes	No	No	No	0	AlrmMode	No		alarm mode
+119	Alarm output mode	15			97	4	c		0	255	Yes	Yes	No	No	No	0	AlrmOutMod	No		alarm relais activ ity mode during alarm situation
+120	Alarm setpoint mode	15			97	5	c		0	1	Yes	Yes	No	No	No	0	AlrmStpMod	No		setpoint change enable during alarm situation
+121	Alarm new setpoint	15			97	6	i		0	32767	Yes	Yes	No	No	No	0	AlrmNwSetp	No		new/safe setpoint during alarm situation (until reset)
+122	Counter value	16			104	1	f		0	3.40282E+038	Yes	Yes	Yes	No	No	0	CntrValue	No		actual counter value
+123	Counter unit index	16			104	2	c		0	31	Yes	Yes	No	No	No	0	CntrUnit	No		pointer to counter unit (classic counter unit table)
+124	Counter limit	16			104	3	f		0	3.40282E+038	Yes	Yes	No	No	No	0	CntrLimit	No		counter limit/batch
+125	Counter output mode	16			104	4	c		0	255	Yes	Yes	No	No	No	0	CntrOutMod	No		counter relais activity mode when limit/batch has been reached
+126	Counter setpoint mode	16			104	5	c		0	1	Yes	Yes	No	No	No	0	CntrStpMod	No		setpoint change enable during counter limit/batch situation (until reset)
+127	Counter new setpoint	16			104	6	i		0	32767	Yes	Yes	No	No	No	0	CntrNwSetp	No		new/safe setpoint at counter limit/batch situation (until reset) (normally = 0%)
+128	Counter unit	16			104	7	c	4			Yes	Yes	No	No	No	ln	CntrUntstr	No		counter readout unit (informative only for older devices)
+129	Capacity unit	3	19		1	31	c	7			Yes	Yes	No	Yes	No	ln/min	capunitstr	No		capacity readout unit (informative only for older devices)
+130	Counter mode	16			104	8	c		0	255	Yes	Yes	No	No	No	0	CntrMode	No		counter mode
+131	Minimum hardware revision	13			113	7	c	1			Yes	No	No	No	No	VX.XX	HwRev	No		minimum required hardware revision lev el for firmware version
+132	<RCreadfact>	17				1	f		1E-10	10000000000	Yes	No	No	No	No	1	RCreadfact	No		readout factor for direct reading (changes with readunit: local on module, R.O.)
+133	<channumber>	17				2	c		1	120	Yes	Yes	No	No	No	1	channumber	No		channel number for operation
+134	<masterchan>	17				3	c		0	120	Yes	Yes	No	No	No	0	masterchan	No		master channel for master-slave operation
+135	<RCslavefct>	17				4	i		0	32000	Yes	Yes	No	No	No	32000	RCslavefct	No		RC slave factor
+136	<inputnode>	17				5	c		0	128	Yes	Yes	No	Yes	No	3	inputnode	No		physical node address for channel number
+137	<inputproc>	17				6	c		0	128	Yes	Yes	No	Yes	No	1	inputproc	No		physical process for channel number
+138	<RCreadunit>	17				7	c	7			Yes	No	No	No	No	ln/min	RCreadunit	No		readout unit for direct reading (local variable on module: read only)
+139	Slave factor	18			33	1	f		0	500	Yes	Yes	No	No	No	100	SlaveFact%	No		slave factor for master slave control (setp = master output * slave factor)
+140	Reference voltage input	18			33	2	i		0	65535	Yes	No	Yes	No	No	0	VrefInput	No		reference voltage input for setpoint signal
+141	Stable situation controller response	8			114	17	c		0	255	Yes	Yes	No	Yes	No	0	RespStable	No		controller response when controller is stable: |measure-setpoint| < 2%
+142	Temperature	19	13		33	7	f		-250	500	Yes	Yes	Yes	No	No	20	temperatur	No		absolute temperature in degrees Celsius
+143	Pressure	19	13		33	8	f		-3.40282E+038	3.40282E+038	Yes	Yes	Yes	No	No	1013.25	pressure	No		absolute pressure in mbar
+144	Time	19			33	9	f		0	3.40282E+038	Yes	No	Yes	No	No	0	time	No		time in milliseconds
+145	Calibrated volume	19			33	10	f		0	3.40282E+038	Yes	Yes	No	Yes	No	50	calvolume	No		calibrated volume in litres
+146	Sensor number	19				16	c		0	4	Yes	Yes	Yes	No	No	0	sensornr	No		pointer to sensor number in calibration tube (FPP)
+147	Range select	20	19		115	10	c		0	99	Yes	Yes	Yes	No	No	0	rangeselct	No		Piston Prover operation mode (write) and status information (read back)
+148	Time out	20				2	i		0	30000	Yes	Yes	No	Yes	No	0	TimeOut	No		maximum admitted duration time for specific procedure (in 100 ms)
+149	Frequency	21			33	9	f		0	100000	Yes	No	Yes	No	No	0	frequency	No		frequency in Hz
+150	Impulses/m3	20			33	10	f		0	3.40282E+038	Yes	Yes	No	Yes	No	42773.4	imp/m3	No		For FRM and FTM imp/m3 and for FCM imp/kg
+151	Normal volume flow	19			33	5	f		0	3.40282E+038	Yes	No	No	No	No	0	RefVolFlow	No		volume flow referenced to normal conditions i.e. 0 °C, 1013.25 hPa(a) in ln/min
+152	Volume flow	19			33	6	f		-3.40282E+038	3.40282E+038	Yes	No	No	No	No	0	volumeflow	No		volume flow at actual conditions in l/min
+153	Delta-p	19			33	11	f		-100000	100000	Yes	Yes	Yes	No	No	0	delta-p	No		relative pressure between atmosphere and sensor position
+154	<scalefact>	21			33	13	i		1	10000	Yes	No	No	No	No	1	scalefact	No		scaling factor (multiplication) for readout on display (for optimal resolution)
+155	Sensor name	19				17	c	10			Yes	Yes	No	Yes	No	SENSOR0	sensorname	No		label with information about stop sensor
+156	Reset alarm enable	15			97	9	c		0	255	Yes	Yes	No	No	No	15	RstAlarmEn	No		enable reset of alarm by: keyboard, external signal, FLOW -BUS, automatic
+157	Reset counter enable	16			104	9	c		0	255	Yes	Yes	No	No	No	7	RstCountEn	No		enable reset of counter by: keyboard, external signal, FLOW-BUS, automatic
+158	Master node	18			33	14	c		1	128	Yes	Yes	No	No	No	3	MasterNode	No		node number of master instrument output signal for a slave
+159	Master process	18			33	15	c		1	128	Yes	Yes	No	No	No	1	MasterProc	No		process number of master instrument output signal for a slave
+160	Remote instrument node	18			33	16	c		1	128	Yes	Yes	No	Yes	No	3	InstrNode	No		node number of instrument to be operated by another module (keyboard/display)
+161	Remote instrument process	18			33	17	c		1	128	Yes	Yes	No	Yes	No	1	InstrProc	No		process number of instrument to be operated by another module (keyboard/display)
+162	Minimum custom range	3			33	18	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	0	RangeMin	No		Mnimum value at 0% for special user readout unit
+163	Maximum custom range	3			33	20	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	100	RangeMax	No		Maximum value at 100% for special user readout unit
+164	Relay/TTL output	12			115	11	c		0	255	Yes	Yes	No	Yes	No	0	Relay/TTL	No		Relay/TTL output setting (disabled when used by alarm or counter)
+165	Open from zero controller response	8			114	18	c		0	255	Yes	Yes	No	Yes	No	0	RespOpen0%	No		Controller response when valv e opens from zero
+166	Controller features	8			114	20	c		0	255	Yes	Yes	No	Yes	No	1	ContrType	No		Controller settings for special purpose
+167	PID-Kp	8	3		114	21	f		0	3.40282E+038	Yes	Yes	No	Yes	No	10	PIDKp	No		PID factor Kp
+168	PID-Ti	8			114	22	f		0	3.40282E+038	Yes	Yes	No	Yes	No	0.05	PIDTi	No		PID factor Ti
+169	PID-Td	8			114	23	f		0	3.40282E+038	Yes	Yes	No	Yes	No	0	PIDTd	No		PID factor Td
+170	Density	3			33	21	f		0	3.40282E+038	Yes	Yes	No	Yes	No	1.293	Density	No		Density of selected fluid in kg/m3
+171	Calibration certificate	13	3		113	8	c	-2			Yes	Yes	No	Yes	Yes		CalCertNr	No		Number of calibration certificate (last basic calibration)
+172	Calibration date	13	3		113	9	c	8			Yes	Yes	No	Yes	Yes	19991231	CalDate	No		Date of last (basic) calibration
+173	Service number	13			113	10	c	15			Yes	Yes	No	Yes	Yes	0	ServiceNr	No		Service number for repair/rebuilding/recalibration
+174	Service date	13			113	11	c	8			Yes	Yes	No	Yes	Yes	19991231	ServDate	No		Date of last service action
+175	Identification number	13			113	12	c		0	255	Yes	Yes	No	Yes	Yes	7	IdentNr	No		Identification number (type) of instrument/device
+176	BHT11	14			118	11	c		0	255	No	Yes	No	Yes	Yes	0	BHT11	No		special BHT parameter (to be changed by Bronkhorst only)
+177	Power mode	12			115	12	c		0	50	Yes	Yes	No	Yes	No	0	PowerMode	No		power supply indication in Vdc
+178	Pressure inlet	13	3		113	13	f		-100000	100000	Yes	Yes	No	Yes	No	3	Pupstream	No		pressure inlet (upstream) of fluid in bara (for first fluidnr only)
+179	Pressure outlet	13	3		113	14	f		-100000	100000	Yes	Yes	No	Yes	No	1	Pdownstrm	No		pressure outlet (downstream) of fluid in bara (for first fluidnr only)
+180	Orifice	13			113	15	f		0	1000	Yes	Yes	No	Yes	No	1	Orifice	No		orifice diameter in mm
+181	Fluid temperature	13	3		113	16	f		-273.15	3.40282E+038	Yes	Yes	No	Yes	No	20	FluidTemp	No		temperature of fluid through instrument (for first fluidnr only)
+182	Alarm delay	15			97	7	c		0	255	Yes	Yes	No	No	No	3	AlrmDelay	No		time alarm and reset action will be delayed when alarm limit has been exceeded
+183	Capacity 0%	3			33	22	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	0	capacity0%	No		capacity of instrument at zero 0% in sensor base units (mostly equal to zero)
+184	Number of channels	12			0	18	c		0	120	Yes	No	No	No	No	1	NumOfChan	No		number of instrument channels av ailable for this device
+185	Device function	12			0	20	c		0	255	Yes	No	No	No	No	5	DeviceFunc	No		function of device
+186	Scan channel	4			123	1	c		1	255	Yes	Yes	No	No	No	1	ScanChan	No		Channel  number to scan with real time information (to be set once)
+187	Scan parameter	4			123	3	c		0	255	Yes	Yes	No	No	No	8	ScanPar	No		Parameter number to scan with real time information (to be set once)
+188	Scan time	4			123	4	i		0	65535	Yes	Yes	No	No	No	50	ScanTime	No		Scan interval time in msec between two samples (to be set once)
+189	Scan data	22	4		123	10	c	-2			Yes	No	No	No	No		ScanData	No		Scanned data with time label (can be readout ev ent by event)
+190	Valve open	8			114	24	f		0	24	Yes	Yes	No	Yes	No	0.04	ValveOpen	No		First-step offset current/voltage for valv e when opening from 0%
+191	Number of runs	20			115	13	c		0	255	Yes	Yes	No	No	No	1	NrOfRuns	No		Amount of runs of a piston prover (0 = stability check)
+192	Minimum process time	20			115	14	c		0	255	Yes	Yes	No	No	No	10	MinProTime	No		Minimum process time of a piston prover in 0.1 seconds
+193	Leak rate	20			116	9	f		0	1	Yes	Yes	No	Yes	No	0.0001	LeakRate	No		Leak rate piston prover
+194	Mode info request	12			115	15	c	4			Yes	Yes	No	Yes	No		ModeInfReq	No		Sets instr. in info mode for 1 read-cycle to check available parameter options
+195	Mode info option list	12			115	16	c	255			Yes	No	No	No	No		ModeInfOpt	No		Gives info about possible values of a mode in an array as result of ModeInfo req
+196	Mode info option description	12			115	17	c	255			Yes	No	No	No	No		ModeInfDes	No		Gives description about one of the mode options
+197	Calibrations options	20			115	18	c		0	255	Yes	Yes	No	Yes	No	0	CalType	No		Enables/disables options for calibration device (8 bits for 8 options)
+198	Mass flow	20			33	4	f		-3.40282E+038	3.40282E+038	Yes	No	Yes	No	No	0	MassFlow	No		Real mass flow in kg/min
+199	Bus address	23			125	10	c		0	255	Yes	Yes	No	Yes	No	2	BusAddress	No		Fieldbus address (top interface)
+200	Interface configuration	23			125	3	c		0	3	Yes	Yes	No	No	Yes	1	InterfConf	No		Configuration setting for interface to other bus-systems
+201	Baudrate	23			125	9	l		0	10000000000	Yes	Yes	No	Yes	No	12000000	Baudrate	No		Fieldbus baudrate (top interface)
+202	Bus diagnostic string	23			125	20	c	-2			Yes	No	No	No	No		BusDiagnos	No		Fieldbus diagnose string (top interface)
+203	Number of vanes	20			115	22	c		0	255	Yes	Yes	No	Yes	No	10	NrOfVanes	No		Number of vanes for use in a rotor meter
+204	Fieldbus	23			125	21	c	-2			Yes	No	No	No	No	FLOW-BUS	Fieldbus	Yes		Fieldbus name (top interface)
+205	fMeasure	2			33	0	f		-3.40282E+038	3.40282E+038	Yes	No	Yes	No	No	0	fMeasure	No		measured value for direct reading (in capunits, max.= capacity)
+276	Sub fluid number	3			65	1	c		0	255	Yes	Yes	No	No	No	0	FluidSub	No		Sub fluid number
+277	Temperature compensation factor	9			116	17	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	0	FreqTCor	No		Temperature compensation factor
+278	DSP register address	13			116	29	l		0	4294967295	Yes	Yes	No	No	No	0	DSPRegI	No		DSP register address
+279	DSP register long	13			116	30	l		-4294967295	4294967295	Yes	Yes	No	Yes	No	0	DSPRegLng	No		DSP register long
+280	DSP register floating point	13			116	30	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	0	DSPRegFlt	No		DSP register floating point
+281	DSP register integer	13			116	31	i		-65535	65535	Yes	Yes	No	Yes	No	0	DSPRegInt	No		DSP register integer
+282	Standard deviation	19			121	0	f		-3.40282E+038	3.40282E+038	Yes	No	Yes	No	No	0	StdDev	No		Standard deviation
+283	Measurement status	19			121	1	i		0	65535	Yes	No	No	No	No	0	MeasStatus	No		Measurement status
+284	Measurement stop criteria	19			121	2	i		0	65535	Yes	No	No	No	No	0	MStopCrit	No		Measurement stop criteria
+285	Measurement time out	20			121	3	i		0	65535	Yes	Yes	No	No	No	0	MTimeOut	No		Measurement time out
+286	Maximum number of runs	20			121	4	i		0	65535	Yes	Yes	No	No	No	0	MMaxNrRuns	No		Measurement maximum number of runs
+287	Minimum standard deviation	20			121	5	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	No	No	0	MMinStdDev	No		Measurement minimum standard deviation
+288	IO switch status	10			114	31	l		0	4294967295	Yes	Yes	No	No	No	0	IOSwitchSt	No		IO status for switches
+295	Sensor bridge settings	9			65	21	i		0	65535	Yes	Yes	No	Yes	Yes	513	SensBridge	No		Sensor bridge settings
+296	Sensor bridge current	9			65	22	f		0	3.40282E+038	Yes	Yes	No	Yes	Yes	0	SensCurren	No		Sensor bridge current (0..0.02A)
+297	Sensor resistance	9			65	23	f		0	3.40282E+038	Yes	No	No	No	No	0	SensResist	No		Sensor resistance (Ohm)
+298	Sensor bridge voltage	9			65	24	f		0	3.40282E+038	Yes	No	No	No	No	0	SensVolt	No		Sensor bridge v oltage (0..11.5V)
+299	Sensor group name	9			65	25	c	-2			Yes	No	No	No	No		SensName	No		Sensor name (based on sensor detection / sensor resistance)
+300	Sensor calibration temperature	9			116	20	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	0	SensCalTmp	No		Sensor temperature at calibration
+301	Valve safe state	8			115	31	c		0	255	Yes	Yes	No	No	No	0	ValveSafe	No		Valv e safe state
+302	Counter unit type index	16			104	12	c		0	255	Yes	Yes	No	No	No	0	CnUnitType	No		Counter unit type
+303	Counter unit type	16			104	13	c	20			Yes	Yes	No	No	No		CnUnTypNam	No		Counter unit type name
+304	Counter unit index (ext)	16			104	14	c		0	255	Yes	Yes	No	No	No	0	CnUnit	No		Counter unit index (extended counter unit table)
+305	Bus1 selection	23			125	8	c		0	255	Yes	Yes	No	Yes	No	255	Bus1Select	No		Fieldbus select
+306	Bus1 medium	23			125	11	c		0	255	Yes	Yes	No	Yes	No	1	Bus1Medium	No		Fieldbus medium id
+307	Bus2 mode	23			124	7	c		0	255	Yes	Yes	No	Yes	No	0	Bus2Mode	No		Fieldbus2 mode
+308	Bus2 selection	23			124	8	c		0	255	Yes	Yes	No	Yes	No	2	Bus2Select	No		Fieldbus2 select
+309	Bus2 address	23			124	10	c		0	255	Yes	Yes	No	Yes	No	2	Bus2Addr	No		Fieldbus2 address (side interface)
+310	Bus2 baudrate	23			124	9	l		0	10000000000	Yes	Yes	No	Yes	No	12000000	Bus2Baud	No		Fieldbus2 baudrate (side interface)
+311	Bus2 medium	23			124	11	c		0	255	Yes	Yes	No	Yes	No	0	Bus2Medium	No		Fieldbus2 medium id
+312	Bus2 diagnostics	23			124	20	c	-2			Yes	No	No	No	No		Bus2Diagn	No		Fieldbus2 diagnose string (side interface)
+313	Bus2 name	23			124	21	c	-2			Yes	No	No	No	No	Propar	Bus2Name	No		Fieldbus2 name (side interface)
+314	PIO channel selection	10			120	0	c		0	255	Yes	Yes	No	No	No	0	PIOChSel	No		PIO channel selection
+315	PIO parameter	10			120	2	i		0	65535	Yes	Yes	No	No	No	0	PIOParm	No		PIO parameter connected to i/o channel (=process number*256+parameter number)
+316	PIO input/output filter	10			120	6	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	No	No	0	PIOFilter	No		PIO input/output filter constant (0..1, 0=max, 1=min)
+317	PIO parameter capacity 0%	10			120	7	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	No	No	0	PIOPrmCap0	No		PIO parameter capacity, 0% value
+318	PIO parameter capacity 100%	10			120	3	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	No	No	0	PIOPrmCap	No		PIO parameter capacity, 100% value
+319	PIO configuration selection	10			120	1	c		0	255	Yes	Yes	No	No	No	0	PIOCfgSel	No		PIO i/o channel configuration selection
+320	PIO analog zero adjust	10			120	4	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	0	PIOAnZA	No		PIO analog input/output, zero adjust v alue
+321	PIO analog span adjust	10			120	5	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	0	PIOAnSA	No		PIO analog input/output, span adjust factor
+322	PIO hardware capacity max	10			120	8	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	No	No	0	PIOHwCapMx	No		PIO max hardware capacity (max capacity v alue in i/o units, V, A, Hz, etc.)
+323	PIO capacity set selection	10			120	9	c		0	255	Yes	Yes	No	No	No	0	PIOCapSel	No		PIO capacity set selection
+324	PIO hardware capacity 0%	10			120	10	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	No	No	0	PIOHwCap0	No		PIO hardware capacity, 0% value (capacity value in i/o units, V, A, Hz, etc.)
+325	PIO hardware capacity 100%	10			120	11	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	No	No	0	PIOHwCap	No		PIO hardware capacity, 100% value (capacity value in i/o units, V, A, Hz, etc.)
+326	Hardware platform id	12			0	6	i		0	65535	Yes	No	No	No	No	0	HardwId	No		Hardware platform identification number
+327	Hardware platform sub id	12			0	7	c		0	255	Yes	No	No	No	No	0	HardwSubId	No		Hardware platform sub identification number
+328	Temporary baudrate	23			124	31	l		0	10000000000	Yes	Yes	No	No	No	0	TempBaud	No		Temporary volatile Fieldbus2 baudrate (side interface)
+329	Setpoint monitor mode	2			115	23	c		0	255	Yes	Yes	No	Yes	No	0	SetMonitor	No		Monitor mode for setpoint
+330	BHT12	14			118	12	l		0	10000000000	Yes	No	No	No	No	0	BHT12	No		Special BHT parameter
+331	Nominal sensor voltage	9			65	26	f		0	3.40282E+038	Yes	Yes	No	Yes	No	0	SenNomVolt	No		Nominal sensor voltage (used for sensor temperature v oltage compensation)
+332	Sensor voltage compensation factor	9			116	16	f		-3.40282E+038	3.40282E+038	Yes	Yes	No	Yes	No	0	VoltTCor	No		Sensor voltage compensation factor (used for sensor temperature voltage comp.)
+333	PCB serial number	4			119	31	c	-2			Yes	Yes	No	Yes	Yes		PCBSerial	No		PCB serial number (unique number or string written by PCB manufacturer)
+334	Minimum measure time	20			115	24	c		0	255	Yes	Yes	No	No	No	0	MinMTime	No		Minimum measure time between sensors of a piston prov er in 0.1 seconds
+335	Bus1 parity	23			125	12	c		0	255	Yes	Yes	No	Yes	No	0	Bus1Parity	No		Fieldbus parity
+336	Bus2 parity	23			124	12	c		0	255	Yes	Yes	No	Yes	No	0	Bus2Parity	No		Fieldbus2 parity (side interface)
+337	Firmware id	12			0	8	c		0	255	Yes	No	No	No	No	0	FirmwId	Yes		Firmware identification number
