@@ -51,7 +51,8 @@
    .. autoclass:: {{ item }}
       :members:
       :undoc-members:
-   {% endfor %} {% endif %}
+
+{% endfor %} {% endif %}
    {% if exceptions %}
 
    **Exceptions**

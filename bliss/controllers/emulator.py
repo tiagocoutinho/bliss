@@ -5,8 +5,12 @@
 # Copyright (c) 2016 Beamline Control Unit, ESRF
 # Distributed under the GNU LGPLv3. See LICENSE for more info.
 
-"""
-Device Server Emulator
+"""Emulator Server and Base Device \
+(:mod:`~bliss.controllers.emulator.Server`, \
+:mod:`~bliss.controllers.emulator.BaseDevice`)
+
+Quick start
+-----------
 
 To create a server use the following configuration as a starting point:
 
@@ -19,15 +23,13 @@ To create a server use the following configuration as a starting point:
               - type: tcp
                 url: :25000
 
-To start the server you can do something like:
+To start the server you can do something like::
 
     $ python -m bliss.controllers.emulator my_emulator
 
-A simple *nc* client can be used to connect to the instrument:
+(bliss also provides a ``bliss-emulator`` script which basically does the same)
 
-    $ nc 0 25000
-    *idn?
-    Bliss Team, Generic SCPI Device, 0, 0.1.0
+An emulator how-to is available :ref:`here <bliss-emulator-how-to>`.
 """
 
 from __future__ import print_function
@@ -44,6 +46,9 @@ from gevent.server import StreamServer
 from gevent.fileobject import FileObject
 
 _log = logging.getLogger('emulator')
+
+__all__ = ['Server', 'BaseDevice', 'EmulatorServerMixin',
+           'SerialServer', 'TCPServer', 'main', 'create_server_from_config']
 
 
 class EmulatorServerMixin(object):
@@ -150,11 +155,11 @@ class EmulatorServerMixin(object):
 
 class SerialServer(BaseServer, EmulatorServerMixin):
     """
-    Serial line emulation server. It uses :ref:`pty.opentpy` to open a
+    Serial line emulation server. It uses :func:`pty.opentpy` to open a
     pseudo-terminal simulating a serial line.
 
     .. note::
-        Since :ref:`pty.opentpy` opens a non configurable file descriptor, it
+        Since :func:`pty.opentpy` opens a non configurable file descriptor, it
         is impossible to predict which /dev/pts/<N> will be used.
         You have to be attentive to the first logging info messages when the
         server is started. They indicate which device is in use  :-(
@@ -169,8 +174,8 @@ class SerialServer(BaseServer, EmulatorServerMixin):
 
     def set_listener(self, listener):
         """
-        Override of :ref:`BaseServer.set_listener` to initialize
-        a pty and properly fill the address
+        Override of :meth:`~gevent.baseserver.BaseServer.set_listener` to
+        initialize a pty and properly fill the address
         """
         if listener is None:
             self.master, self.slave = pty.openpty()
@@ -182,8 +187,8 @@ class SerialServer(BaseServer, EmulatorServerMixin):
     @property
     def socket(self):
         """
-        Override of :ref:`BaseServer.socket` to return a socket
-        object for the pseudo-terminal file object
+        Override of :meth:`~gevent.baseserver.BaseServer.socket` to return a
+        socket object for the pseudo-terminal file object
         """
         return self.fileobj._sock
 
@@ -207,7 +212,10 @@ class TCPServer(StreamServer, EmulatorServerMixin):
 
     def __init__(self, *args, **kwargs):
         listener = kwargs.pop('url')
+        if isinstance(listener, list):
+            listener = tuple(listener)
         device = kwargs.pop('device')
+        print('TCP_SERVER', kwargs)
         e_kwargs = dict(baudrate=kwargs.pop('baudrate', None),
                         newline=kwargs.pop('newline', None))
         StreamServer.__init__(self, listener, *args, **kwargs)
@@ -230,11 +238,14 @@ class BaseDevice(object):
 
     special_messages = set()
 
-    def __init__(self, name, newline=DEFAULT_NEWLINE):
+    def __init__(self, name, newline=None, **kwargs):
         self.name = name
-        self.newline = newline
+        self.newline = self.DEFAULT_NEWLINE if newline is None else newline
         self._log = logging.getLogger('{0}.{1}'.format(_log.name, name))
         self.__transports = weakref.WeakKeyDictionary()
+        if kwargs:
+            self._log.warning('constructor keyword args ignored: %s',
+                              ', '.join(kwargs.keys()))
 
     @property
     def transports(self):
@@ -334,26 +345,22 @@ class Server(object):
         return '{0}({1})'.format(self.__class__.__name__, self.name)
 
 
-def find_device_class(device_info):
-    klass_name = device_info.get('class')
-    if 'package' in device_info:
-        package_name = device_info['package']
-    else:
-        module_name = device_info.get('module', klass_name.lower())
+def create_device(device_info):
+    device_info = dict(device_info)
+    class_name = device_info.pop('class')
+    module_name = device_info.pop('module', class_name.lower())
+    package_name = device_info.pop('package', None)
+    name = device_info.pop('name', class_name)
+
+    if package_name is None:
         package_name = 'bliss.controllers.emulators.' + module_name
 
     __import__(package_name)
     package = sys.modules[package_name]
-    return getattr(package, klass_name)
-
-
-def create_device(device_info):
-    device_info = dict(device_info)
-    klass = find_device_class(device_info)
-    klass_name = device_info.pop('class')
-    name = device_info.pop('name', klass_name)
-    transports_info = device_info.pop('transports', ())
+    klass = getattr(package, class_name)
     device = klass(name, **device_info)
+
+    transports_info = device_info.pop('transports', ())
     transports = []
     for interface_info in transports_info:
         ikwargs = dict(interface_info)
