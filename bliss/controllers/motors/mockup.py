@@ -11,7 +11,7 @@ import random
 
 from bliss.controllers.motor import Controller
 from bliss.common import log as elog
-from bliss.common.axis import AxisState
+from bliss.common.axis import AxisState, to_magnitude
 from bliss.common import event
 
 from bliss.common.utils import object_method
@@ -90,13 +90,13 @@ class Mockup(Controller):
         if axis.config.get("persistent_position", bool, 
                            default=False, inherited=True):
             try:
-                dial_pos = axis.settings.get("dial_position")
+                dial_pos = axis.settings.get("dial_position") or 0
             except:
                 pass
-
         def set_pos(move_done, axis=axis):
             if move_done:
-                self.set_position(axis, axis.dial()*axis.steps_per_unit)
+                dial = to_magnitude(axis.dial(), axis.unit)
+                self.set_position(axis, dial*axis.steps_per_unit)
 
         self._axis_moves[axis] = {
             "measured_simul": False,

@@ -33,6 +33,7 @@ from bliss.config.settings import QueueSetting
 
 from bliss.controllers.motor_group import Group
 
+from bliss.common.units import ureg as ur
 
 _ERR = '!ERR'
 _MAX_COLS = 9
@@ -302,7 +303,14 @@ def __row_positions(positions, motors, fmt, sep=' '):
 
 
 def __row(cols, fmt, sep=' '):
-    return sep.join([format(col, fmt) for col in cols])
+    data = []
+    for col in cols:
+        if isinstance(col, ur.Quantity):
+            col = str(col)
+        else:
+            col = format(col, fmt)
+        data.append(col)
+    return sep.join(data)
 
 
 def __umove(*args, **kwargs):
