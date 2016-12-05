@@ -8,6 +8,9 @@ Getting Started
 Installation
 ------------
 
+(if you are on a ESRF beamline please follow the
+`ESRF installation instructions`_ instead)
+
 Bliss is easy to install::
 
     $ pip install blisslib
@@ -65,12 +68,6 @@ that you want the TANGO_ database server to serve::
 
 ... and update your TANGO_HOST environment variable accordingly.
 
-On an ESRF beamline
-~~~~~~~~~~~~~~~~~~~
-
-.. todo:: write ESRF beamline installation
-
-
 .. _bliss-quick-start:
 
 Quick Start
@@ -90,7 +87,7 @@ assumes the following YAML_ configuration is present:
 .. literalinclude:: examples/config/motion.yml
    :language: yaml
    :caption: ./motion.yml
- 
+
 Accessing the configured elements from python is easy::
 
     >>> from bliss.config.static import get_config
@@ -116,3 +113,4 @@ Accessing the configured elements from python is easy::
     >>> s1b.position()
     90.0
 
+.. _ESRF installation instructions: http://gitlab.esrf.fr/bliss/bliss/wikis/how-to-install
